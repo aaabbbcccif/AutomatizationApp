@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="automationApp.RukovoditelPodrazdelenia"
+             BackgroundImageSource="fon.jpg"             
+             NavigationPage.HasNavigationBar="False">
+
+
+
+    <ScrollView>
+        <Grid Padding="24" x:Name="MainLayout">
+            <!-- Полупрозрачный фон -->
+            <Frame
+            BackgroundColor="#F2F2F2"
+            BorderColor="Transparent"
+            CornerRadius="32"
+            Padding="16"
+            HasShadow="False"
+            Opacity="0.5"
+            HorizontalOptions="Center"
+            VerticalOptions="Fill"
+            WidthRequest="1350" />
+
+            <!-- Контент -->
+            <Frame
+            BackgroundColor="Transparent"
+            BorderColor="Transparent"
+            CornerRadius="32"
+            Padding="16,16,16,16"
+            HasShadow="False"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" 
+                WidthRequest="1300"
+                >
+
+                <Grid ColumnSpacing="0"
+      RowSpacing="0"
+      RowDefinitions="Auto, *, 50, 100"
+      ColumnDefinitions="2*,Auto">
+
+                    <!-- Заголовок -->
+                    <Label Grid.ColumnSpan="2"
+                       Text="Мои сотрудники"
+                       FontSize="48"
+                       FontAttributes="Bold"
+                       FontFamily="Inter"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       Margin="0,0,0,16" />
+
+                    <!-- ЛЕВАЯ КОЛОНКА -->
+                    
+                    <VerticalStackLayout Grid.Column="0"
+                     Grid.Row="1"
+                     Grid.RowSpan="6"
+                     Spacing="16"
+                     VerticalOptions="Start"
+                     Margin="0,0,24,0" >
+                        <Frame CornerRadius="15" HeightRequest="460" Padding="0" BackgroundColor="#FFFFFF" BorderColor="Black">
+                            <Grid RowDefinitions="Auto,*">
+
+                                <!-- Фиксированный заголовок -->
+                                <Grid ColumnDefinitions="*,*,*,*" RowSpacing="0" ColumnSpacing="0"
+              BackgroundColor="#4B164C"
+              Padding="0"
+              Grid.Row="0">
+                                    <Border Stroke="Black" StrokeThickness="1" Grid.Column="0">
+                                        <Label Text="Фамилия" TextColor="White" FontSize="16" Padding="10" />
+                                    </Border>
+                                    <Border Stroke="Black" StrokeThickness="1" Grid.Column="1">
+                                        <Label Text="Имя" TextColor="White" FontSize="16" Padding="10" />
+                                    </Border>
+                                    <Border Stroke="Black" StrokeThickness="1" Grid.Column="2">
+                                        <Label Text="Отчество" TextColor="White" FontSize="16" Padding="10" />
+                                    </Border>
+                                    <Border Stroke="Black" StrokeThickness="1" Grid.Column="3">
+                                        <Label Text="Должность" TextColor="White" FontSize="16" Padding="10" />
+                                    </Border>
+                                </Grid>
+
+                                <!-- Прокручиваемая таблица -->
+                                <CollectionView x:Name="MyCollectionView"
+                        Grid.Row="1"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Margin="1"
+                           Padding="0"
+                           HasShadow="False"
+                           BackgroundColor="#FFFFFF"
+                           BorderColor="Black"
+                           CornerRadius="0">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                                                <Setter TargetName="LastNameLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="FirstNameLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="MiddleNameLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="PositionLabel" Property="Label.TextColor" Value="Black" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="#6C2B6F" />
+                                                                <Setter TargetName="LastNameLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="FirstNameLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="MiddleNameLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="PositionLabel" Property="Label.TextColor" Value="White" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+
+                                                <Grid ColumnDefinitions="*,*,*,*" RowSpacing="0" ColumnSpacing="0">
+                                                    <Border Stroke="Black" StrokeThickness="0.5" Grid.Column="0">
+                                                        <Label x:Name="LastNameLabel"
+                                       Text="{Binding Last_name}"
+                                       FontSize="16" Padding="10" />
+                                                    </Border>
+                                                    <Border Stroke="Black" StrokeThickness="0.5" Grid.Column="1">
+                                                        <Label x:Name="FirstNameLabel"
+                                       Text="{Binding First_name}"
+                                       FontSize="16" Padding="10" />
+                                                    </Border>
+                                                    <Border Stroke="Black" StrokeThickness="0.5" Grid.Column="2">
+                                                        <Label x:Name="MiddleNameLabel"
+                                       Text="{Binding Middle_name}"
+                                       FontSize="16" Padding="10" />
+                                                    </Border>
+                                                    <Border Stroke="Black" StrokeThickness="0.5" Grid.Column="3">
+                                                        <Label x:Name="PositionLabel"
+                                       Text="{Binding Position}"
+                                       FontSize="16" Padding="10" />
+                                                    </Border>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+                        </Frame>
+
+                    </VerticalStackLayout>
+
+
+                    <!-- (правая колонка) -->
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="24,0,0,0" >
+
+                        <HorizontalStackLayout Spacing="12" HorizontalOptions="End">
+                            <VerticalStackLayout Spacing="12">
+                                
+                                <Button Text="Email"
+                                    x:Name="right_email"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+TextColor="#4B164C"
+BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start" 
+                                    Clicked="OnServiceButtonClicked"/>
+                                
+                                   <Button Text="Bitrix"
+                                    x:Name="right_bitrix"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start"
+                                        Clicked="OnRightBitrixButtonClicked"/>
+
+                                <Button Text="Domain"
+                                    x:Name="right_domain"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start"
+                                        Clicked="OnRightDomainButtonClicked"/>
+
+                                <Button Text="1C"
+                                    x:Name="right_1c"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start" 
+                                        Clicked="OnRight1CButtonClicked"/>
+
+                                <Button Text="Elastix"
+                                    x:Name="right_elastix"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start"
+                                        Clicked="OnServiceButtonClicked"/>
+
+                                <Button Text="Google"
+                                    x:Name="right_google"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start" 
+                                        Clicked="OnServiceButtonClicked"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Spacing="12">
+                                <!-- Активная кнопка -->
+                                <Button Text="VPN"
+                                    x:Name="right_vpn"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start" 
+                                        Clicked="OnServiceButtonClicked"/>
+                                <!-- Не активная кнопка -->
+                                <Button Text="Teflex"
+                                    x:Name="right_teflex"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start"
+                                        Clicked="OnServiceButtonClicked"/>
+
+                                <Button Text="Jira"
+                                    x:Name="right_jira"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start" 
+                                        Clicked="OnServiceButtonClicked"/>
+
+                                <Button Text="Radius"
+                                    x:Name="right_radius"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start"
+                                        Clicked="OnServiceButtonClicked"/>
+
+                                <Button Text="PhoneBook"
+                                    x:Name="right_phonebook"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start" 
+                                        Clicked="OnServiceButtonClicked"/>
+
+                                <Button Text="FileServer"
+                                    x:Name="right_fileserver"
+                                    WidthRequest="194"
+                                    HeightRequest="66"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    BackgroundColor="White"
+                                    TextColor="#4B164C"
+                                    BorderColor="#4B164C"
+                                    BorderWidth="2"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Start"
+                                        Clicked="OnRightFileServerButtonClicked"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.ColumnSpan="2" Padding="0,8,0,0" HorizontalOptions="Center"
+                    Grid.Row="3">
+                        <HorizontalStackLayout Spacing="20">
+                            <HorizontalStackLayout Spacing="24">
+                                <!-- Кнопка СОХРАНИТЬ -->
+                                <Frame CornerRadius="32"
+                                   BackgroundColor="#4B164C"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   WidthRequest="398"
+                                   HeightRequest="71"
+                                   HorizontalOptions="Center"
+                                   Margin="0,10,0,0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSaveTapped"/>
+                                    </Frame.GestureRecognizers>
+                                    <HorizontalStackLayout HorizontalOptions="Center"
+                                                      VerticalOptions="Center"
+                                                      Spacing="16"
+                                                      Padding="0,0,8,0">
+                                        <Image Source="save_button.png"
+                                           HeightRequest="32"
+                                           WidthRequest="32"
+                                           VerticalOptions="Center" />
+                                        <Label Text="Сохранить"
+                                           FontSize="32"
+                                           FontFamily="Inter"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+                                <!-- Кнопка ЗАГРУЗИТЬ -->
+                                <Frame CornerRadius="32"
+                                   BackgroundColor="#4B164C"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   WidthRequest="398"
+                                   HeightRequest="71"
+                                   HorizontalOptions="Center"
+                                   Margin="0,10,0,0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnLoadTapped"/>
+                                    </Frame.GestureRecognizers>
+                                    <HorizontalStackLayout HorizontalOptions="Center"
+                                                      VerticalOptions="Center"
+                                                      Spacing="16"
+                                                      Padding="0,0,8,0">
+                                        <Image Source="load_button.png"
+                                           HeightRequest="32"
+                                           WidthRequest="32"
+                                           VerticalOptions="Center" />
+                                        <Label Text="Загрузить"
+                                           FontSize="32"
+                                           FontFamily="Inter"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="24">
+                                <!-- Кнопка копирования -->
+                                <Frame WidthRequest="90" HeightRequest="70"
+                                   BackgroundColor="#4B164C"
+                                   CornerRadius="32"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   VerticalOptions="Center">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCopyRightsClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <ImageButton Source="copy_button.png"
+                                            BackgroundColor="Transparent"
+                                            WidthRequest="40"
+                                            HeightRequest="40"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+                                </Frame>
+                                <!-- Кнопка вставки -->
+                                <Frame WidthRequest="90" HeightRequest="70"
+                                   BackgroundColor="#4B164C"
+                                   CornerRadius="32"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   VerticalOptions="Center">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnPasteRightsClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <ImageButton Source="paste_button.png"
+                                            BackgroundColor="Transparent"
+                                            WidthRequest="40"
+                                            HeightRequest="40"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+                                </Frame>
+                            </HorizontalStackLayout>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

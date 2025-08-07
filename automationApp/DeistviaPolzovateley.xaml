@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="automationApp.DeistviaPolzovateley"
+             BackgroundImageSource="fon.jpg"
+             NavigationPage.HasNavigationBar="False">
+    <AbsoluteLayout x:Name="RootLayout">
+    <ScrollView>
+        <Grid Padding="24" x:Name="MainLayout">
+            <!-- Полупрозрачный фон -->
+            <Frame BackgroundColor="#F2F2F2"
+                   BorderColor="Transparent"
+                   CornerRadius="32"
+                   Padding="0"
+                   HasShadow="False"
+                   Opacity="0.5"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Fill"
+                   WidthRequest="1350" />
+
+            <!-- Контент -->
+            <Frame BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   CornerRadius="32"
+                   Padding="16"
+                   HasShadow="False"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   WidthRequest="1300">
+                <Grid RowDefinitions="Auto,*">
+                    <!-- Заголовок -->
+                    <VerticalStackLayout Grid.Row="0">
+                        <Label Text="Действия пользователя"
+                               FontSize="48"
+                               FontAttributes="Bold"
+                               FontFamily="Inter"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               Margin="0,16,0,16" />
+
+                        <!-- Кнопки меню -->
+                        <HorizontalStackLayout HorizontalOptions="Start" Spacing="16" Margin="0,16,0,24">
+                            <Frame CornerRadius="32" BackgroundColor="#4B164C"
+                                   Padding="0" HasShadow="False" WidthRequest="300" HeightRequest="71">
+                                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="16">
+                                    <Image Source="sort.png" HeightRequest="32" WidthRequest="32"/>
+                                    <Picker x:Name="SortPicker" FontSize="22" FontFamily="Inter"
+                                            TextColor="White" BackgroundColor="Transparent"
+                                            SelectedIndexChanged="SortPicker_SelectedIndexChanged" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                            <Frame CornerRadius="32" BackgroundColor="#4B164C"
+                                   Padding="0" HasShadow="False" WidthRequest="286" HeightRequest="71">
+                                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="16">
+                                    <Image Source="filter.png" HeightRequest="32" WidthRequest="32"/>
+                                    <Picker x:Name="FilterPicker" FontSize="22" FontFamily="Inter"
+                                            TextColor="White" BackgroundColor="Transparent"
+                                            SelectedIndexChanged="FilterPicker_SelectedIndexChanged" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                            <Frame CornerRadius="32" BackgroundColor="#4B164C"
+                                   Padding="0" HasShadow="False" WidthRequest="300" HeightRequest="71">
+                                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="16">
+                                    <Image Source="actions2.png" HeightRequest="32" WidthRequest="32"/>
+                                    <Picker x:Name="ActionsPicker" FontSize="22" FontFamily="Inter"
+                                            TextColor="White" BackgroundColor="Transparent"
+                                            SelectedIndexChanged="ActionsPicker_SelectedIndexChanged" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <CollectionView x:Name="ActionsCollectionView"
+                Grid.Row="1"
+                ItemSizingStrategy="MeasureFirstItem"
+                SelectionMode="Single" SelectionChanged="ActionsCollectionView_SelectionChanged" >
+
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                         Span="2"
+                         HorizontalItemSpacing="12"
+                         VerticalItemSpacing="12" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="16"
+                   BorderColor="#4B164C"
+                   BackgroundColor="White"
+                   Padding="16"
+                   HasShadow="True">
+                                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto,Auto,Auto">
+                                        <VerticalStackLayout Grid.Column="0">
+                                            <Label Text="{Binding FullName}"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               FontFamily="Inter"
+                               TextColor="#4B164C"
+                               Margin="0,0,0,4" />
+                                            <Label Text="{Binding Title}"
+                               FontSize="16"
+                               FontFamily="Inter"
+                               TextColor="Black"
+                               Margin="0,0,0,4"/>
+                                            <Label Text="{Binding ActionDate}"
+                               FontSize="14"
+                               FontFamily="Inter"
+                               TextColor="#4A4A4A"/>
+                                        </VerticalStackLayout>
+
+                                        <Label Text="{Binding Status}"
+                           Grid.Column="1"
+                           VerticalOptions="Center"
+                           FontSize="16"
+                           FontFamily="Inter"
+                           FontAttributes="Bold"
+                           TextColor="{Binding StatusColor}" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+        <!-- Слой для диалога -->
+        <ContentView x:Name="DialogLayer"
+                     IsVisible="False"
+                     BackgroundColor="#80000000"
+                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All">
+        </ContentView>
+    </AbsoluteLayout>
+</ContentPage>

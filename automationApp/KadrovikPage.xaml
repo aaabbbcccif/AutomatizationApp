@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="automationApp.KadrovikPage"
+             BackgroundImageSource="fon.jpg"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <Grid Padding="24">
+
+            <!-- Полупрозрачный фон -->
+            <Frame
+                BackgroundColor="#F2F2F2"
+                BorderColor="Transparent"
+                CornerRadius="32"
+                Padding="16"
+                HasShadow="False"
+                Opacity="0.5"
+                HorizontalOptions="Center"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="1050" />
+
+            <!-- Контент -->
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="32"
+                Padding="16,16,16,0"
+                HasShadow="False"
+                HorizontalOptions="Center"
+                VerticalOptions="Start">
+
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="*,*"
+                      ColumnSpacing="120"
+                      RowSpacing="7">
+
+                    <!-- Заголовок -->
+                    <Label Grid.ColumnSpan="2"
+                           Text="Регистрация сотрудника"
+                           FontSize="48"
+                           FontAttributes="Bold"
+                           FontFamily="Inter"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           TextColor="Black"
+                           Margin="0,0,0,16" />
+
+                    <!-- Поля ввода (левая колонка) -->
+                    <VerticalStackLayout Grid.Column="0"
+                                         Grid.Row="1"
+                                         Grid.RowSpan="6"
+                                         Spacing="16"
+                                         VerticalOptions="Start">
+
+                        <HorizontalStackLayout x:Name="UserIdFrame" WidthRequest="398" HeightRequest="70" Spacing="24" IsVisible="False">
+                            <!-- Поле ввода UserID -->
+                            <Frame WidthRequest="280" HeightRequest="70"
+                                BackgroundColor="White"
+                                CornerRadius="32"
+                                Padding="20,0"
+                                HasShadow="False"
+                                BorderColor="#E0E0E0"
+                                VerticalOptions="Center">
+                                <Entry x:Name="UserIdEntry"
+                                    Placeholder="UserID"
+                                    FontSize="22"
+                                     FontFamily="Inter"
+                                     TextColor="Black"
+                                    PlaceholderColor="#4A4A4A"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="Transparent" />
+                            </Frame>
+
+                            <!-- Кнопка поиска -->
+                            <Frame WidthRequest="90" HeightRequest="70"
+                                BackgroundColor="#4B164C"
+                                CornerRadius="32"
+                                Padding="0"
+                                HasShadow="False"
+                                VerticalOptions="Center">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSearchButtonClicked" />
+                                </Frame.GestureRecognizers>
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#4B164C" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="PointerOver">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#6C2B6F" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ImageButton Source="search.png"
+                                    BackgroundColor="Transparent"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                            
+                        </HorizontalStackLayout>
+
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                            <Entry x:Name="FirstNameEntry"
+                                   Placeholder="Имя (латиница)"
+                                   FontSize="22"
+                                   FontFamily="Inter"
+                                   TextColor="Black"
+                                   PlaceholderColor="#4A4A4A"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="Transparent" />
+                        </Frame>
+
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                            <Entry x:Name="LastNameEntry"
+                                   Placeholder="Фамилия (латиница)"
+                                   FontSize="22"
+                                   FontFamily="Inter"
+                                   TextColor="Black"
+                                   PlaceholderColor="#4A4A4A"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="Transparent" />
+                        </Frame>
+
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                            <Entry x:Name="MiddleNameEntry"
+                                   Placeholder="Отчество (кириллица)"
+                                   FontSize="22"
+                                   FontFamily="Inter"
+                                   TextColor="Black"
+                                   PlaceholderColor="#4A4A4A"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="Transparent" />
+                        </Frame>
+
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                            <Entry x:Name="PhoneNumberEntry"
+                                   Placeholder="Номер телефона (11 цифр)"
+                                   FontSize="22"
+                                   FontFamily="Inter"
+                                   TextColor="Black"
+                                   PlaceholderColor="#4A4A4A"
+                                   VerticalOptions="Center"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="Transparent" />
+                        </Frame>
+
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                            <Entry x:Name="BirthdayEntry"
+                                   Placeholder="Дата рождения (дд.мм.гггг)"
+                                   FontSize="22"
+                                   FontFamily="Inter"
+                                   TextColor="Black"
+                                   PlaceholderColor="#4A4A4A"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="Transparent" />
+                        </Frame>
+
+                    </VerticalStackLayout>
+
+                    <!-- Поля ввода (правая колонка) -->
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Spacing="16">
+
+                        <!-- Пикер "Департамент" -->
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="32" Padding="32,0" HasShadow="False">
+                            <Picker x:Name="DepartmentPicker"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    TextColor="Black"
+                                    Title=""
+                                    VerticalOptions="Center"
+                                    BackgroundColor="Transparent"
+                                    SelectedIndex="1"
+                                    SelectedIndexChanged="DepartmentPicker_SelectedIndexChanged">
+                                <Picker.Items>
+                                    <x:String></x:String>
+                                    <x:String>Выберите департамент</x:String>
+                                    <x:String>Финансовый департамент</x:String>
+                                    <x:String>HR-департамент</x:String>
+                                    <x:String>Административный департамент</x:String>
+                                    <x:String>Департамент качества</x:String>
+                                    <x:String>Департамент логистики и закупок</x:String>
+                                    <x:String>Департамент технический</x:String>
+                                    <x:String>Департамент продаж</x:String>
+                                    <x:String>Производственный департамент</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Frame>
+
+                        <!-- Пикер "Отдел" -->
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="32" Padding="32,0" HasShadow="False">
+                            <Picker x:Name="OtdelPicker"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    TextColor="Black"
+                                    Title=""
+                                    VerticalOptions="Center"
+                                    BackgroundColor="Transparent"
+                                    SelectedIndex="0"
+                                    SelectedIndexChanged="OtdelPicker_SelectedIndexChanged"
+                                    IsEnabled="False">
+                            </Picker>
+                        </Frame>
+
+                        <!-- Пикер "Должность" -->
+                        <Frame WidthRequest="398" HeightRequest="70" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="32" Padding="32,0" HasShadow="False">
+                            <Picker x:Name="DolgnostPicker"
+                                    FontSize="22"
+                                    FontFamily="Inter"
+                                    TextColor="Black"
+                                    Title=""
+                                    VerticalOptions="Center"
+                                    BackgroundColor="Transparent"
+                                    SelectedIndex="0"
+                                    IsEnabled="False">
+                            </Picker>
+                        </Frame>
+                        <HorizontalStackLayout>
+                            <Label Text="Руководитель подразделения?" WidthRequest="220" HeightRequest="62" FontAttributes="Bold" TextColor="Black" FontSize="24" />
+                            <Button Text="Нет"
+        x:Name="YesOrNoButton"
+        WidthRequest="150"
+        HeightRequest="62"
+        FontSize="22"
+        FontFamily="Inter"
+        Margin="28,0,0,0"
+        BackgroundColor="White"
+        TextColor="Black"
+        BorderColor="#4B164C"
+        BorderWidth="2"
+        CornerRadius="32"
+                                    VerticalOptions="Center"
+        HorizontalOptions="Start" 
+        Clicked="YesOrNoButtonClicked"/>
+                        </HorizontalStackLayout>
+                        
+
+                    </VerticalStackLayout>
+
+                    <!-- Кадровые операции -->
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="2" Grid.RowSpan="1" Margin="0,10,0,0" Spacing="12">
+                        <Label Text="Кадровые операции" FontAttributes="Bold" TextColor="Black" FontSize="24" />
+                        <!-- Активная кнопка -->
+                        <Button Text="Новый сотрудник"
+                                x:Name="NewEmployeeButton"
+                                WidthRequest="398"
+                                HeightRequest="62"
+                                FontSize="22"
+                                FontFamily="Inter"
+                                BackgroundColor="#4B164C"
+                                TextColor="White"
+                                BorderColor="#4B164C"
+                                BorderWidth="2"
+                                CornerRadius="32"
+                                HorizontalOptions="Start" 
+                                Clicked="OnEmployeeTypeButtonClicked"/>
+                        <!-- Не активная кнопка -->
+                        <Button Text="Переведенный сотрудник"
+                                x:Name="TransferredEmployeeButton"
+                                WidthRequest="398"
+                                HeightRequest="62"
+                                FontSize="22"
+                                FontFamily="Inter"
+                                BackgroundColor="White"
+                                TextColor="#4B164C"
+                                BorderColor="#4B164C"
+                                BorderWidth="2"
+                                CornerRadius="32"
+                                HorizontalOptions="Start"
+                                Clicked="OnEmployeeTypeButtonClicked"/>
+
+                        <Button Text="Удаленный сотрудник"
+                                x:Name="DeletedEmployeeButton"
+                                WidthRequest="398"
+                                HeightRequest="62"
+                                FontSize="22"
+                                FontFamily="Inter"
+                                BackgroundColor="White"
+                                TextColor="#4B164C"
+                                BorderColor="#4B164C"
+                                BorderWidth="2"
+                                CornerRadius="32"
+                                HorizontalOptions="Start"
+                                Clicked="OnEmployeeTypeButtonClicked"/>
+                    </VerticalStackLayout>
+
+                    <Frame x:Name="AddUserFrame"
+       Grid.ColumnSpan="2"
+       Grid.Row="3"
+       CornerRadius="32"
+       BackgroundColor="#4B164C"
+       Padding="0"
+       HasShadow="False"
+       WidthRequest="398"
+       HeightRequest="71"
+       HorizontalOptions="Center"
+       Margin="0,10,0,0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAddUserClicked" />
+                        </Frame.GestureRecognizers>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#4B164C" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#6C2B6F" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <HorizontalStackLayout 
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Spacing="16">
+
+                            <Image 
+                                 x:Name="AddUserImage"
+            Source="add.png"
+            HeightRequest="32"
+            WidthRequest="32"
+            VerticalOptions="Center" />
+
+                            <Label 
+                                x:Name="AddUserLabel"
+            Text="Добавить"
+            FontSize="32"
+            FontFamily="Inter"
+            TextColor="White"
+            VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

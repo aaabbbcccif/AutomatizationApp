@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="automationApp.AdminPage"
+             BackgroundImageSource="fon.jpg"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <Grid Padding="24" x:Name="MainLayout">
+            <!-- Полупрозрачный фон -->
+            <Frame
+                BackgroundColor="#F2F2F2"
+                BorderColor="Transparent"
+                CornerRadius="32"
+                Padding="0"
+                HasShadow="False"
+                Opacity="0.5"
+                HorizontalOptions="Center"
+                VerticalOptions="Fill"
+                WidthRequest="1350" />
+
+            <!-- Контент -->
+            <Frame 
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="32"
+                Padding="16,16,16,16"
+                HasShadow="False"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                WidthRequest="1300">
+                <Grid Padding="12" RowDefinitions="Auto,*,Auto">
+
+                    <!-- Верхняя часть -->
+                    <VerticalStackLayout Grid.Row="0">
+                        <Label Text="Сотрудники"
+                               FontSize="48"
+                               FontAttributes="Bold"
+                               FontFamily="Inter"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"
+                               Margin="0,0,0,16" />
+                    </VerticalStackLayout>
+
+                    <!-- Таблица фиксированной высоты -->
+                    <ScrollView Grid.Row="1" Orientation="Horizontal">
+                        <Frame 
+        CornerRadius="15"
+        Padding="0"
+        BackgroundColor="#FFFFFF"
+        BorderColor="Transparent"
+        HeightRequest="300">
+                            <Grid RowDefinitions="Auto,*">
+                                <!-- Заголовок -->
+                                <Grid 
+                Grid.Row="0"
+                ColumnDefinitions="80,130,130,130,120,130,130,150,130,100,100,100"
+                Padding="0"
+                BackgroundColor="White"
+                RowSpacing="0"
+                ColumnSpacing="1">
+                                    <Label Grid.Column="0" Text="ID" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="1" Text="Фамилия" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="2" Text="Имя" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="3" Text="Отчество" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="4" Text="Телефон" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="5" Text="Дата рождения" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="6" Text="Отдел" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="7" Text="Подразделение" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="8" Text="Должность" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="9" Text="Логин" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="10" Text="Пароль" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                    <Label Grid.Column="11" Text="Роль" TextColor="White" FontSize="16" BackgroundColor="#4B164C" Padding="10" />
+                                </Grid>
+                                <!-- Содержимое -->
+                                <CollectionView 
+                Grid.Row="1"
+                x:Name="MyCollectionView" 
+                SelectionMode="Single" 
+                SelectionChanged="CollectionView_SelectionChanged">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid 
+                            ColumnDefinitions="80,130,130,130,120,130,130,150,130,100,100,100"
+                            Padding="0"
+                            BackgroundColor="White"
+                            RowSpacing="0"
+                            ColumnSpacing="1">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="White" />
+                                                                <Setter TargetName="IdLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="LastNameLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="FirstNameLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="MiddleNameLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="PhoneLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="BirthDateLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="DepartmentLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="DivisionLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="PositionLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="LoginLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="PasswordLabel" Property="Label.TextColor" Value="Black" />
+                                                                <Setter TargetName="RoleLabel" Property="Label.TextColor" Value="Black" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="#6C2B6F" />
+                                                                <Setter TargetName="IdLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="LastNameLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="FirstNameLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="MiddleNameLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="PhoneLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="BirthDateLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="DepartmentLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="DivisionLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="PositionLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="LoginLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="PasswordLabel" Property="Label.TextColor" Value="White" />
+                                                                <Setter TargetName="RoleLabel" Property="Label.TextColor" Value="White" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="0">
+                                                    <Label x:Name="IdLabel" Text="{Binding Id}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="1">
+                                                    <Label x:Name="LastNameLabel" Text="{Binding Last_name}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="2">
+                                                    <Label x:Name="FirstNameLabel" Text="{Binding First_name}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="3">
+                                                    <Label x:Name="MiddleNameLabel" Text="{Binding Middle_name}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="4">
+                                                    <Label x:Name="PhoneLabel" Text="{Binding Phone_number}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="5">
+                                                    <Label x:Name="BirthDateLabel" Text="{Binding Birth_date}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="6">
+                                                    <Label x:Name="DepartmentLabel" Text="{Binding Department}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="7">
+                                                    <Label x:Name="DivisionLabel" Text="{Binding Division}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="8">
+                                                    <Label x:Name="PositionLabel" Text="{Binding Position}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="9">
+                                                    <Label x:Name="LoginLabel" Text="{Binding Login}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="10">
+                                                    <Label x:Name="PasswordLabel" Text="{Binding Password}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                                <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="11">
+                                                    <Label x:Name="RoleLabel" Text="{Binding Role_name}" Padding="8" TextColor="Black" FontSize="14" />
+                                                </Border>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+                        </Frame>
+                    </ScrollView>
+
+                    <!-- Нижняя часть -->
+                    <VerticalStackLayout Grid.Row="2" Spacing="16" Margin="0,32,0,0">
+                        <!-- Первая строка кнопок -->
+                        <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                            <Button Text="Email" x:Name="right_email" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                            <Button Text="Bitrix" x:Name="right_bitrix" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnRightBitrixButtonClicked"/>
+                            <Button Text="Domain" x:Name="right_domain" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnRightDomainButtonClicked"/>
+                            <Button Text="1C" x:Name="right_1c" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnRight1CButtonClicked"/>
+                            <Button Text="Elastix" x:Name="right_elastix" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                            <Button Text="Google" x:Name="right_google" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                        </HorizontalStackLayout>
+
+                        <!-- Вторая строка кнопок -->
+                        <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                            <Button Text="VPN" x:Name="right_vpn" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                            <Button Text="Teflex" x:Name="right_teflex" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                            <Button Text="Jira" x:Name="right_jira" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                            <Button Text="Radius" x:Name="right_radius" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                            <Button Text="PhoneBook" x:Name="right_phonebook" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnServiceButtonClicked"/>
+                            <Button Text="FileServer" x:Name="right_fileserver" WidthRequest="194" HeightRequest="66" FontSize="22"
+                                    FontFamily="Inter" BackgroundColor="White" TextColor="#4B164C" BorderColor="#4B164C"
+                                    BorderWidth="2" CornerRadius="32" Clicked="OnRightFileServerButtonClicked"/>
+                        </HorizontalStackLayout>
+
+                        <!-- Кнопки Сохранить / Удалить -->
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="16" Margin="0,0,0,0">
+                            <!-- Кнопка СОХРАНИТЬ -->
+                            <Frame CornerRadius="32"
+                                   BackgroundColor="#4B164C"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   WidthRequest="300"
+                                   HeightRequest="71"
+                                   HorizontalOptions="Center"
+                                   Margin="0,10,0,0">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSaveTapped"/>
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout HorizontalOptions="Center"
+                                                      VerticalOptions="Center"
+                                                      Spacing="16"
+                                                      Padding="0,0,8,0">
+                                    <Image Source="save_button.png"
+                                           HeightRequest="32"
+                                           WidthRequest="32"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Сохранить"
+                                           FontSize="32"
+                                           FontFamily="Inter"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                            <!-- Кнопка УДАЛИТЬ -->
+                            <Frame CornerRadius="32"
+                                   BackgroundColor="#4B164C"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   WidthRequest="286"
+                                   HeightRequest="71"
+                                   HorizontalOptions="Center"
+                                   Margin="0,10,0,0" IsEnabled="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDeleteTapped"/>
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout HorizontalOptions="Center"
+                                                      VerticalOptions="Center"
+                                                      Spacing="16"
+                                                      Padding="0,0,8,0">
+                                    <Image Source="delete.png"
+                                           HeightRequest="32"
+                                           WidthRequest="32"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Удалить"
+                                           FontSize="32"
+                                           FontFamily="Inter"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                            <!-- Кнопка ЗАГРУЗИТЬ -->
+                            <Frame CornerRadius="32"
+                                   BackgroundColor="#4B164C"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   WidthRequest="300"
+                                   HeightRequest="71"
+                                   HorizontalOptions="Center"
+                                   Margin="0,10,0,0">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLoadTapped"/>
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout HorizontalOptions="Center"
+                                                      VerticalOptions="Center"
+                                                      Spacing="16"
+                                                      Padding="0,0,8,0">
+                                    <Image Source="load_button.png"
+                                           HeightRequest="32"
+                                           WidthRequest="32"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Загрузить"
+                                           FontSize="32"
+                                           FontFamily="Inter"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                            <!-- Кнопка ДЕЙСТВИЯ СОТРУДНИКОВ -->
+                            <Frame CornerRadius="32"
+                                   BackgroundColor="#4B164C"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   WidthRequest="300"
+                                   HeightRequest="71"
+                                   HorizontalOptions="Center"
+                                   Margin="0,10,0,0">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnActionsTapped"/>
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout HorizontalOptions="Center"
+                                                      VerticalOptions="Center"
+                                                      Spacing="16"
+                                                      Padding="0,0,8,0">
+                                    <Image Source="actions.png"
+                                           HeightRequest="32"
+                                           WidthRequest="32"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Действия"
+                                           FontSize="32"
+                                           FontFamily="Inter"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

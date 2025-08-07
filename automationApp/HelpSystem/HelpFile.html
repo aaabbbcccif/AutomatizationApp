@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Справочная система</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4B164C;
+            color: #FFFFFF;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #6C2B6F;
+            color: #FFFFFF;
+            padding: 10px;
+            text-align: center;
+        }
+
+            nav a {
+                color: #FFFFFF;
+                text-decoration: none;
+                margin: 0 10px;
+                font-weight: bold;
+            }
+
+        main {
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #4B164C;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        footer {
+            background-color: #4A4A4A;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card {
+            border: 1px solid #6C2B6F;
+            border-radius: 16px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .step-image {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Справочная система приложения</h1>
+    </header>
+
+    <nav>
+        <a href="#auth">Авторизация</a>
+        <a href="#hr">Специалист по кадрам</a>
+        <a href="#lead">Руководитель подразделения</a>
+        <a href="#executor">Исполнитель</a>
+        <a href="#admin">Администратор</a>
+        <a href="#workspaces">Рабочие пространства</a>
+    </nav>
+
+    <main>
+        <section id="auth">
+            <h2>Авторизация</h2>
+            <div class="card">
+                <p>После запуска программы отображается окно авторизации.</p>
+                <img src="auth.png" alt="Окно авторизации" class="step-image">
+                <p>Введите логин и пароль. При неправильном вводе появится сообщение об ошибке.</p>
+                <img src="auth_mistake.png" alt="Ошибка авторизации" class="step-image">
+                <p>Нажмите кнопку показать пароль — содержимое отобразится. Нажмите ещё раз — снова скроется.</p>
+                <img src="auth_show_password.png" alt="Показать/скрыть пароль" class="step-image">
+                <p>После корректного ввода происходит вход в систему, где каждому пользователю отображается своя рабочая зона по роли.</p>
+                <img src="auth_success_roles.png" alt="Вход по ролям" class="step-image">
+            </div>
+        </section>
+
+        <section id="hr">
+            <h2>Работа специалиста по кадрам</h2>
+            <div class="card">
+                <p>Откроется окно для добавления или редактирования сотрудника.</p>
+                <img src="hr_main_window.png" alt="Форма HR" class="step-image">
+                <p>Введите имя, фамилию, отчество, номер телефона и дату рождения.</p>
+                <img src="hr_filled_fields.png" alt="Заполнение полей" class="step-image">
+                <p>Выберите департамент → отдел → должность из выпадающих списков.</p>
+                <img src="hr_select_lists.png" alt="Выпадающие списки" class="step-image">
+                <p>Укажите, является ли сотрудник руководителем.</p>
+                <img src="hr_switch_role.png" alt="Выбор руководителя" class="step-image">
+                <p>Выберите кадровую операцию:</p>
+                <ul>
+                    <li>Новый сотрудник</li>
+                    <li>Переведённый сотрудник</li>
+                    <li>Удалённый сотрудник</li>
+                </ul>
+                <img src="hr_operations.png" alt="Кадровые операции" class="step-image">
+                <p>Для перевода или удаления сотрудника нажмите <strong>Найти пользователя</strong>.</p>
+                <img src="hr_find_user.png" alt="Найти пользователя" class="step-image">
+                <p>После выбора автоматически заполнятся поля. Выполните операцию и нажмите нужную кнопку.</p>
+                <img src="hr_action_done.png" alt="Действие завершено" class="step-image">
+            </div>
+        </section>
+
+        <section id="lead">
+            <h2>Руководитель подразделения</h2>
+            <div class="card">
+                <p>Откроется таблица сотрудников. Выберите сотрудника для управления правами.</p>
+                <img src="lead_table.png" alt="Таблица сотрудников" class="step-image">
+                <p>Нажмите <strong>Загрузить</strong> чтобы отобразить текущие права.</p>
+                <img src="lead_load_rights.png" alt="Загрузить права" class="step-image">
+                <p>Чтобы скопировать права одного пользователя другому, используйте кнопки <strong>Копировать</strong> и <strong>Вставить</strong>.</p>
+                <img src="lead_copy_paste.png" alt="Копирование прав" class="step-image">
+                <p>Нажмите на нужную кнопку сервиса (например, Bitrix или Email), заполните данные.</p>
+                <img src="lead_create_request.png" alt="Создание заявки" class="step-image">
+                <p>Нажмите на сохранить и введите коментарий к заявке чтобы отправить заявку на исполнение.</p>
+                <img src="lead_send_request.png" alt="Создание заявки" class="step-image">
+            </div>
+        </section>
+
+        <section id="executor">
+            <h2>Окно исполнителя</h2>
+            <div class="card">
+                <p>Здесь отображаются все заявки от руководителей.</p>
+                <img src="executor_main.png" alt="Список заявок" class="step-image">
+                <p>Выберите заявку — рабочая зона отобразит её подробности. Правильно выданные права окрасятся в фиолетовый цвет.</p>
+                <img src="executor_selected_request.png" alt="Выбранная заявка" class="step-image">
+                <p>Нажмите на права, которые предоставлены. После завершения смените статус на <strong>Выполнено</strong>.</p>
+                <img src="executor_rights_done.png" alt="Выданные права" class="step-image">
+            </div>
+        </section>
+
+        <section id="admin">
+            <h2>Окно администратора</h2>
+            <div class="card">
+                <p>Вы увидите таблицу со всеми сотрудниками и их данными.</p>
+                <img src="admin_all_users.png" alt="Список сотрудников" class="step-image">
+                <p>Можно загрузить права пользователя при нажатии на кнопку "Загрузить", нужно лишь перед этим выбрать пользователя из таблицы.</p>
+                <img src="admin_load_user.png" alt="Список сотрудников" class="step-image">
+                <p>При выборе пользователя и нажатии на кнопку "Сохранить" откроется диалоговое окно где можно изменить логин или пароль пользователя.</p>
+                <img src="admin_load_save.png" alt="Список сотрудников" class="step-image">
+                <p>При выборе пользователя и нажатии на кнопку "Удалить" нужно будет подтвердить удаление пользователя, после чего пользователь удаляется из базы данных.</p>
+                <img src="admin_load_delete.png" alt="Список сотрудников" class="step-image">
+                
+                <p>В окне действий можно просмотреть, отсортировать, отфильтровать действия и экспортировать их.</p>
+                <img src="admin_actions.png" alt="Окно действий" class="step-image">
+            </div>
+        </section>
+
+        <section id="workspaces">
+            <h2>Рабочие пространства</h2>
+            <div class="card">
+                <h3>Email (KerioConnect)</h3>
+                <p>1. Перейдите в рабочее пространство Email.</p>
+                <img src="workspace_email_form.png" alt="Форма добавления Email" class="step-image">
+                <p>2. Введите логин, пароль, полное имя пользователя, размер дискового пространства в Гигобайтах и описание.</p>
+                <img src="workspace_email_form_fill_in_the_fields.png" alt="Форма добавления Email" class="step-image">
+                <p>3. Нажмите кнопку <strong>Добавить</strong> — пользователь появится в таблице.</p>
+                <img src="workspace_email_form_add.png" alt="Форма добавления Email" class="step-image">
+                <img src="workspace_email_form_add_table.png" alt="Форма добавления Email" class="step-image">
+                <p>4. Для удаления выберите пользователя и нажмите <strong>Удалить</strong>.</p>
+                <p>5. Чтобы заблокировать/разблокировать пользователя — выберите пользователя и нажмите <strong>Блокировать/Разблокировать доступ</strong>.</p>
+                <img src="workspace_email_unblock.png" alt="Добавленный Email-пользователь" class="step-image">
+
+                <h3>Bitrix</h3>
+                <p>1. Откройте раздел Bitrix.</p>
+                <img src="workspace_bitrix_form.png" alt="Добавление пользователя в Bitrix" class="step-image">
+                <p>2. Введите фамилию, имя, email сотрудника.</p>
+                <img src="workspace_bitrix_form_form_fill_in_the_fields.png" alt="Добавление пользователя в Bitrix" class="step-image">
+                <p>3. Нажмите <strong>Добавить</strong>. Пользователю придёт приглашение на почту.</p>
+                <img src="workspace_bitrix_add_message.png" alt="Добавление пользователя в Bitrix" class="step-image">
+                <img src="workspace_bitrix_form_send_email.png" alt="Добавление пользователя в Bitrix" class="step-image">
+                <p>4. Чтобы удалить пользователя — выделите в таблице и нажмите <strong>Удалить</strong>.</p>
+                <img src="workspace_bitrix_list.png" alt="Список пользователей Bitrix" class="step-image">
+
+                <h3>Google Drive</h3>
+                <p>1. Перейдите в раздел Google Drive.</p>
+                <p>2. Выберите корпоративную почту из выпадающего списка.</p>
+                <p>3. Выберите нужную папку, которой необходимо предоставить доступ.</p>
+                <p>4. Введите email сотрудника и выберите роль доступа.</p>
+                <p>5. Нажмите <strong>Добавить</strong>. Пользователь получит доступ.</p>
+                <img src="workspace_google_add.png" alt="Добавление" class="step-image">
+                <img src="workspace_google_add_message.png" alt="Добавление" class="step-image">
+                <p>6. Чтобы удалить доступ — выберите строку в таблице и нажмите <strong>Удалить</strong>.</p>
+                <img src="workspace_google_table.png" alt="Таблица доступов Google Drive" class="step-image">
+
+                <h3>Active Directory (Домен)</h3>
+                <p>1. Перейдите в рабочую область Active Directory.</p>
+                <p>2. Введите имя, фамилию, описание пользователя. Нажмите <strong>Добавить</strong>.</p>
+                <img src="workspace_ad_add_user.png" alt="Добавление пользователя AD" class="step-image">
+                <p>3. Чтобы удалить — выделите пользователя и нажмите <strong>Удалить</strong>.</p>
+                <p>4. Для назначения доступа:</p>
+                <ul>
+                    <li>Выберите нужную папку</li>
+                    <li>Выберите группу</li>
+                    <li>Выберите пользователя</li>
+                    <li>Нажмите <strong>Назначить доступ</strong></li>
+                </ul>
+
+                <p>5. Для блокировки доступа — выполните аналогичные действия, но нажмите <strong>Блокировать доступ</strong>.</p>
+
+                <h3>RADIUS</h3>
+                <p>1. Откройте раздел RADIUS.</p>
+                <img src="workspace_radius_form.png" alt="Форма RADIUS" class="step-image">
+                <p>2. Для добавления по логину и паролю — заполните поля и нажмите <strong>Добавить</strong>.</p>
+                <img src="workspace_radius_form_add1.png" alt="Форма RADIUS" class="step-image">
+                <p>3. Для добавления устройства — введите MAC-адрес, имя владельца и модель.</p>
+                <img src="workspace_radius_form_add2.png" alt="Форма RADIUS" class="step-image">
+                <p>4. Нажмите <strong>Добавить</strong>. Устройство или пользователь появятся в таблице.</p>
+                <img src="workspace_radius_table.png" alt="Таблица Radius" class="step-image">
+                <p>5. Для удаления — выберите нужную строку и нажмите <strong>Удалить</strong>.</p>
+                <img src="workspace_radius_form_delete1.png" alt="Форма RADIUS" class="step-image">
+                <img src="workspace_radius_form_delete2.png" alt="Форма RADIUS" class="step-image">
+                <p>6. Нажмите <strong>Обновить</strong> для синхронизации данных.</p>
+                <img src="workspace_radius_form_load2.png" alt="Форма RADIUS" class="step-image">
+                <p>7. Чтобы сгенерировать пароль — нажмите на иконку ключа, пароль появится в поле.</p>
+                <img src="workspace_radius_form_password.png" alt="Форма RADIUS" class="step-image">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Справочная система приложения
+    </footer>
+
+</body>
+</html>

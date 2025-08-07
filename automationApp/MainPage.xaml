@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="automationApp.MainPage"
+             BackgroundImageSource="fon.jpg"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+
+        <!-- Логотип -->
+        <Image Source="kcep.png" 
+               HeightRequest="70"
+               WidthRequest="328"
+               HorizontalOptions="End"
+               VerticalOptions="Start"
+               Margin="0,32,28,0" />
+
+        <!-- Центрированная форма -->
+        <Grid HorizontalOptions="Center"
+              VerticalOptions="Center"
+              WidthRequest="560"
+              HeightRequest="500">
+
+            <!-- Полупрозрачный фон -->
+            <Frame BackgroundColor="#F2F2F2"
+                   CornerRadius="32"
+                   HasShadow="False"
+                   Padding="0"
+                   BorderColor="Transparent"
+                   IsClippedToBounds="True"
+                   Opacity="0.5" />
+
+            <!-- Контент формы -->
+            <Frame BackgroundColor="Transparent"
+                   CornerRadius="32"
+                   HasShadow="False"
+                   Padding="40,40,40,20"
+                   BorderColor="Transparent">
+
+                <VerticalStackLayout Spacing="24">
+
+                    <!-- Заголовок -->
+                    <Label Text="Авторизация"
+                           FontFamily="PoppinsBold"
+                           FontSize="48"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           Margin="0,8,0,20" />
+
+                    <!-- Поле Логин -->
+                    <Frame BackgroundColor="White"
+                           CornerRadius="32"
+                           Padding="0"
+                           HasShadow="False"
+                           HeightRequest="81"
+                           WidthRequest="460"
+                           BorderColor="#E0E0E0">
+                        <Grid Padding="24,18,16,18">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="user_round.png"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   VerticalOptions="Center" />
+                            <Entry x:Name="LoginEntry"
+                                   Grid.Column="1"
+                                   Placeholder="Логин"
+                                   PlaceholderColor="#4A4A4A"
+                                   FontFamily="InterRegular"
+                                   FontSize="22"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="Transparent"
+                                   TextColor="Black"
+                                   HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                    </Frame>
+
+                    <!-- Поле Пароль -->
+                    <Frame BackgroundColor="White"
+                           CornerRadius="32"
+                           Padding="0"
+                           HasShadow="False"
+                           HeightRequest="81"
+                           WidthRequest="460"
+                           BorderColor="#E0E0E0">
+                        <Grid Padding="24,18,24,18">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="key_round.png"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   VerticalOptions="Center" />
+                            <Entry x:Name="PasswordEntry"
+                                   Grid.Column="1"
+                                   Placeholder="Пароль"
+                                   PlaceholderColor="#4A4A4A"
+                                   FontFamily="InterRegular"
+                                   FontSize="22"
+                                   VerticalOptions="Center"
+                                   IsPassword="True"
+                                   BackgroundColor="Transparent"
+                                   TextColor="Black"
+                                   HorizontalOptions="FillAndExpand" />
+                            <Image x:Name="EyeImage"
+                                   Grid.Column="2"
+                                   Source="eye.png"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   VerticalOptions="Center"
+                                   Margin="16,0,0,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnEyeTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Кнопка Войти -->
+                    <Frame x:Name="LoginFrame"
+                           BackgroundColor="#4B164C"
+                           CornerRadius="32"
+                           Padding="0"
+                           HasShadow="False"
+                           HeightRequest="81"
+                           Margin="0,24,0,0"
+                           WidthRequest="460"
+                           BorderColor="Transparent">
+                        <Button x:Name="LoginButton"
+                            Text="Войти"
+                                FontFamily="InterRegular"
+                                FontSize="28"
+                                BackgroundColor="Transparent"
+                                TextColor="White"
+                                HeightRequest="81"
+                                WidthRequest="460"
+                                Clicked="OnLoginClicked"
+                                CornerRadius="32" />
+                    </Frame>
+
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

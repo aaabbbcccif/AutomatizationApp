@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="automationApp.RadiusPage"
+             BackgroundImageSource="fon.jpg"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <Grid Padding="24">
+            <Frame
+                BackgroundColor="#F2F2F2"
+                BorderColor="Transparent"
+                CornerRadius="32"
+                Padding="0"
+                HasShadow="False"
+                Opacity="0.5"
+                HorizontalOptions="Center"
+                VerticalOptions="Fill"
+                WidthRequest="1350" />
+
+            <Frame
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="32"
+                Padding="16"
+                HasShadow="False"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                WidthRequest="1300">
+                <Grid Padding="24" RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Radius"
+                           Grid.Row="0"
+                           FontSize="48"
+                           FontAttributes="Bold"
+                           FontFamily="Inter"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           TextColor="Black"
+                           Margin="0" />
+
+                    <Grid Grid.Row="2" ColumnSpacing="24" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="800" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+       CornerRadius="15"
+       Padding="0"
+       BackgroundColor="#FFFFFF"
+       BorderColor="Transparent"
+       HeightRequest="250"
+                               WidthRequest="600">
+                            <Grid RowDefinitions="Auto,*">
+                                <!-- Шапка (фиксированная) -->
+                                <Grid ColumnDefinitions="100,250,250"
+              BackgroundColor="#4B164C"
+              Grid.Row="0">
+                                    <Label Grid.Column="0" Text="ID" TextColor="White" FontSize="16" Padding="10" />
+                                    <Label Grid.Column="1" Text="Пользователь" TextColor="White" FontSize="16" Padding="10" />
+                                    <Label Grid.Column="2" Text="Пароль" TextColor="White" FontSize="16" Padding="10" />
+                                </Grid>
+                                <ScrollView Grid.Row="1" Orientation="Vertical">
+                                    <CollectionView x:Name="MyCollectionView" Grid.Row="1" SelectionMode="Single" >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid ColumnDefinitions="100,250,250"
+                                                      Padding="0"
+                                                      BackgroundColor="White"
+                                                      RowSpacing="0"
+                                                      ColumnSpacing="1">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                                    <Setter TargetName="IdLabel" Property="Label.TextColor" Value="Black" />
+                                                                    <Setter TargetName="LogginLabel" Property="Label.TextColor" Value="Black" />
+                                                                    <Setter TargetName="PasswordLabel" Property="Label.TextColor" Value="Black" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Selected">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="#6C2B6F" />
+                                                                    <Setter TargetName="IdLabel" Property="Label.TextColor" Value="White" />
+                                                                    <Setter TargetName="LogginLabel" Property="Label.TextColor" Value="White" />
+                                                                    <Setter TargetName="PasswordLabel" Property="Label.TextColor" Value="White" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+
+                                                    <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="0">
+                                                        <Label x:Name="IdLabel" Text="{Binding UserId}" Padding="8" TextColor="Black" FontSize="14" />
+                                                    </Border>
+                                                    <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="1">
+                                                        <Label x:Name="LogginLabel" Text="{Binding Username}" Padding="8" TextColor="Black" FontSize="14" />
+                                                    </Border>
+                                                    <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="2">
+                                                        <Label x:Name="PasswordLabel" Text="{Binding Status}" Padding="8" TextColor="Black" FontSize="14" />
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </ScrollView>
+                            </Grid>
+                            
+                        </Frame>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="10">
+                            <Frame WidthRequest="326" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                                <Entry x:Name="LogginEntry"
+                                       Placeholder="Логин"
+                                       FontSize="22"
+                                       FontFamily="Inter"
+                                       TextColor="Black"
+                                       PlaceholderColor="#4A4A4A"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="Transparent" />
+                            </Frame>
+                            <Frame WidthRequest="326" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                                <Entry x:Name="PasswordEntry"
+                                       Placeholder="Пароль"
+                                       FontSize="22"
+                                       FontFamily="Inter"
+                                       TextColor="Black"
+                                       PlaceholderColor="#4A4A4A"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="Transparent" />
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <HorizontalStackLayout Grid.Row="3" Spacing="20" HorizontalOptions="Center" Margin="0,0,0,40">
+                        <Frame CornerRadius="32"
+                               BackgroundColor="#4B164C"
+                               Padding="0"
+                               HasShadow="False"
+                               WidthRequest="280"
+                               HeightRequest="71">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddUserClick" />
+                            </Frame.GestureRecognizers>
+                            <HorizontalStackLayout HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    Spacing="16"
+                                                    Padding="0,0,8,0">
+                                <Image Source="add_user.png"
+                                       HeightRequest="32"
+                                       WidthRequest="32"
+                                       VerticalOptions="Center" />
+                                <Label Text="Добавить"
+                                       FontSize="32"
+                                       FontFamily="Inter"
+                                       TextColor="White"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <Frame CornerRadius="32"
+                               BackgroundColor="#4B164C"
+                               Padding="0"
+                               HasShadow="False"
+                               WidthRequest="280"
+                               HeightRequest="71">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DeleteUserClick" />
+                            </Frame.GestureRecognizers>
+                            <HorizontalStackLayout HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    Spacing="16"
+                                                    Padding="0,0,8,0">
+                                <Image Source="delete_user.png"
+                                       HeightRequest="32"
+                                       WidthRequest="32"
+                                       VerticalOptions="Center" />
+                                <Label Text="Удалить"
+                                       FontSize="32"
+                                       FontFamily="Inter"
+                                       TextColor="White"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <Frame WidthRequest="90" HeightRequest="70"
+                               BackgroundColor="#4B164C"
+                               CornerRadius="32"
+                               Padding="0"
+                               HasShadow="False"
+                               VerticalOptions="Center">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LoadUserClick"/>
+                            </Frame.GestureRecognizers>
+                            <ImageButton Source="load_button.png"
+                                       BackgroundColor="Transparent"
+                                       WidthRequest="40"
+                                       HeightRequest="40"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                        </Frame>
+                        <Frame WidthRequest="90" HeightRequest="70"
+       BackgroundColor="#4B164C"
+       CornerRadius="32"
+       Padding="0"
+       HasShadow="False"
+       VerticalOptions="Center">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GeneratePasswordClick"/>
+                            </Frame.GestureRecognizers>
+                            <ImageButton Source="key.png"
+               BackgroundColor="Transparent"
+               WidthRequest="40"
+               HeightRequest="40"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <Grid Grid.Row="4" ColumnSpacing="24" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="800" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+       CornerRadius="15"
+       Padding="0"
+       BackgroundColor="#FFFFFF"
+       BorderColor="Transparent"
+       HeightRequest="250"
+                               WidthRequest="650">
+                            <Grid RowDefinitions="Auto,*">
+                                <!-- Шапка -->
+                                <Grid ColumnDefinitions="100,150,200,200"
+              BackgroundColor="#4B164C"
+              Grid.Row="0">
+                                    <Label Grid.Column="0" Text="ID" TextColor="White" FontSize="16" Padding="10" />
+                                    <Label Grid.Column="1" Text="Mac-Адрес" TextColor="White" FontSize="16" Padding="10" />
+                                    <Label Grid.Column="2" Text="Владелец" TextColor="White" FontSize="16" Padding="10" />
+                                    <Label Grid.Column="3" Text="Модель" TextColor="White" FontSize="16" Padding="10" />
+                                </Grid>
+
+                                <!-- Прокручиваемая часть -->
+                                <ScrollView Grid.Row="1" Orientation="Vertical">
+                                    <CollectionView x:Name="MyCollectionView2" Grid.Row="1" SelectionMode="Single" >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid ColumnDefinitions="100,150,200,200"
+                                                      Padding="0"
+                                                      BackgroundColor="White"
+                                                      RowSpacing="0"
+                                                      ColumnSpacing="1">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                                    <Setter TargetName="IdLabel" Property="Label.TextColor" Value="Black" />
+                                                                    <Setter TargetName="MacAddressLabel" Property="Label.TextColor" Value="Black" />
+                                                                    <Setter TargetName="OwnerLabel" Property="Label.TextColor" Value="Black" />
+                                                                    <Setter TargetName="ModelLabel" Property="Label.TextColor" Value="Black" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Selected">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="#6C2B6F" />
+                                                                    <Setter TargetName="IdLabel" Property="Label.TextColor" Value="White" />
+                                                                    <Setter TargetName="MacAddressLabel" Property="Label.TextColor" Value="White" />
+                                                                    <Setter TargetName="OwnerLabel" Property="Label.TextColor" Value="White" />
+                                                                    <Setter TargetName="ModelLabel" Property="Label.TextColor" Value="White" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+
+                                                    <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="0">
+                                                        <Label x:Name="IdLabel" Text="{Binding DeviceId}" Padding="8" TextColor="Black" FontSize="14" />
+                                                    </Border>
+                                                    <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="1">
+                                                        <Label x:Name="MacAddressLabel" Text="{Binding MacAddress}" Padding="8" TextColor="Black" FontSize="14" />
+                                                    </Border>
+                                                    <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="2">
+                                                        <Label x:Name="OwnerLabel" Text="{Binding Owner}" Padding="8" TextColor="Black" FontSize="14" />
+                                                    </Border>
+                                                    <Border Stroke="LightGray" StrokeThickness="1" Grid.Column="3">
+                                                        <Label x:Name="ModelLabel" Text="{Binding Model}" Padding="8" TextColor="Black" FontSize="14" />
+                                                    </Border>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </ScrollView>
+                                </Grid>
+                            
+                        </Frame>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="10">
+                            <Frame WidthRequest="326" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                                <Entry x:Name="MacAddressEntry2"
+                                       Placeholder="Mac-Адрес"
+                                       FontSize="22"
+                                       FontFamily="Inter"
+                                       TextColor="Black"
+                                       PlaceholderColor="#4A4A4A"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="Transparent" />
+                            </Frame>
+                            <Frame WidthRequest="326" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                                <Entry x:Name="OwnerPlaceEntry2"
+                                       Placeholder="Владелец/место"
+                                       FontSize="22"
+                                       FontFamily="Inter"
+                                       TextColor="Black"
+                                       PlaceholderColor="#4A4A4A"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="Transparent" />
+                            </Frame>
+                            <Frame WidthRequest="326" HeightRequest="70" BackgroundColor="White" CornerRadius="32" Padding="32,0" HasShadow="False" BorderColor="#E0E0E0">
+                                <Entry x:Name="ModelEntry2"
+                                       Placeholder="Модель"
+                                       FontSize="22"
+                                       FontFamily="Inter"
+                                       TextColor="Black"
+                                       PlaceholderColor="#4A4A4A"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="Transparent" />
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <HorizontalStackLayout Grid.Row="5" Spacing="20" Margin="10" HorizontalOptions="Center">
+                        <Frame CornerRadius="32"
+                               BackgroundColor="#4B164C"
+                               Padding="0"
+                               HasShadow="False"
+                               WidthRequest="280"
+                               HeightRequest="71">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddDeviceClick" />
+                            </Frame.GestureRecognizers>
+                            <HorizontalStackLayout HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Spacing="16"
+                                                   Padding="0,0,8,0">
+                                <Image Source="add_user.png"
+                                       HeightRequest="32"
+                                       WidthRequest="32"
+                                       VerticalOptions="Center" />
+                                <Label Text="Добавить"
+                                       FontSize="32"
+                                       FontFamily="Inter"
+                                       TextColor="White"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <Frame CornerRadius="32"
+                               BackgroundColor="#4B164C"
+                               Padding="0"
+                               HasShadow="False"
+                               WidthRequest="280"
+                               HeightRequest="71">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DeleteDeviceClick" />
+                            </Frame.GestureRecognizers>
+                            <HorizontalStackLayout HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Spacing="16"
+                                                   Padding="0,0,8,0">
+                                <Image Source="delete_user.png"
+                                       HeightRequest="32"
+                                       WidthRequest="32"
+                                       VerticalOptions="Center" />
+                                <Label Text="Удалить"
+                                       FontSize="32"
+                                       FontFamily="Inter"
+                                       TextColor="White"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <Frame WidthRequest="90" HeightRequest="70"
+                               BackgroundColor="#4B164C"
+                               CornerRadius="32"
+                               Padding="0"
+                               HasShadow="False"
+                               VerticalOptions="Center">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LoadDeviceClick"/>
+                            </Frame.GestureRecognizers>
+                            <ImageButton Source="load_button.png"
+                                         BackgroundColor="Transparent"
+                                         WidthRequest="40"
+                                         HeightRequest="40"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center" />
+                        </Frame>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>
